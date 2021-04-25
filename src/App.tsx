@@ -1,6 +1,6 @@
-import { AddFeedPage, ListFeedPage } from "pages";
+import { AddFeedPage, ListFeedPage, LogInPage } from "pages";
 import React from "react";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import {
   BrowserRouter as RouterProvider,
   Redirect,
@@ -10,7 +10,7 @@ import {
 import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import { RouteNames } from "shared/constants";
-import store, { persistor } from "store";
+import store, { persistor, RootState } from "store";
 
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
@@ -31,13 +31,26 @@ const CustomToastContainer = styled(ToastContainer)`
   }
 `;
 
-const App = () => (
-  <Switch>
-    <Route exact path={RouteNames.addFeed} component={AddFeedPage} />
-    <Route exact path={RouteNames.listFeed} component={ListFeedPage} />
-    <Redirect to={RouteNames.listFeed} />
-  </Switch>
-);
+const App = () => {
+  const { authToken: token } = useSelector((state: RootState) => state.auth);
+
+  return (
+    <>
+      {token ? (
+        <Switch>
+          <Route path={RouteNames.login} component={LogInPage} />
+          <Redirect from="/" to={RouteNames.login} />
+        </Switch>
+      ) : (
+        <Switch>
+          <Route exact path={RouteNames.addFeed} component={AddFeedPage} />
+          <Route exact path={RouteNames.listFeed} component={ListFeedPage} />
+          <Redirect to={RouteNames.listFeed} />
+        </Switch>
+      )}
+    </>
+  );
+};
 
 const AppBootstrap = () => (
   <Provider store={store}>
