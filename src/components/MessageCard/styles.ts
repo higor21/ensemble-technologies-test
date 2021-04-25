@@ -7,28 +7,46 @@ export const Card = styled.div`
   box-shadow: 5px 9px 40px -10px ${Colors.shadow};
 `;
 
-export const PriceDetail = styled.div`
-  & > .title {
-    font-size: 1.5em;
-    color: ${Colors.blue};
+export const CardHeader = styled.div`
+  & > div.user {
+    & > span:first-of-type {
+      color: ${Colors.black};
+      font-size: 1.3em;
+    }
+    & > span:last-of-type {
+      color: ${Colors.blue};
+      font-size: 1.5em;
+      font-weight: 500;
+    }
+  }
 
+  & > div.seq {
+    font-size: 1.2em;
+    & > span {
+      color: ${Colors.black};
+    }
     & > strong {
       color: ${Colors.green};
-    }
-    & + div {
-      & > span {
-        font-size: 1.2em;
-        padding: 0 0.5em;
-        color: ${Colors.black};
-      }
     }
   }
 `;
 
+export const CardFooter = styled.div`
+  & > span:first-of-type {
+    color: ${Colors.black};
+    font-size: 1.2em;
+  }
+  & > span:last-of-type {
+    color: ${Colors.blue};
+    font-size: 1.3em;
+  }
+`
+
 export const Button = styled.button`
-  width: 3.5em;
+  width: 24px;
+  height: 24px;
+  display: flex;
   padding: 0;
-  height: 3.5em;
   border-radius: 50%;
   transition-duration: 0.4s;
   &:hover {
@@ -37,8 +55,9 @@ export const Button = styled.button`
   }
 `;
 
-export const Number = styled.span`
-  font-size: 2em;
-  font-weight: 500;
+export const Message = styled.div`
+  font-size: 1.8em;
+  word-break: break-word;
+  hyphens: auto;
   color: ${Colors.black};
 `;

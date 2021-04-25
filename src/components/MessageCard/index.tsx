@@ -1,9 +1,10 @@
 import { useWindowDimensions } from "hooks";
 import React, { HTMLAttributes } from "react";
 import { Colors } from "shared/colors";
-import { PlusCircleIcon } from "shared/icons";
+import { formatDate } from "shared/helpers";
+import { ArrowIcon } from "shared/icons";
 import { PostResProps } from "shared/types";
-import { Button, Card, Number, PriceDetail } from "./styles";
+import { Button, Card, Message, CardHeader, CardFooter } from "./styles";
 
 const BRACK_WIDTH = 540;
 
@@ -22,36 +23,35 @@ const MessageCard: React.FC<Props> = ({
 
   const isMobileDevice = width < BRACK_WIDTH;
 
-  const cardStyle = isMobileDevice ? "flex-column" : "";
-  const cardPriceDetailStyle = isMobileDevice ? "my-4" : "";
-  const cardBtnsStyle = isMobileDevice ? "align-self-end" : "";
-
   return (
     <Card
       {...divProps}
-      className={`py-2 px-3 w-100 d-flex ${cardStyle} align-items-center justify-content-between`}
+      className={`py-2 px-3 w-100 d-flex flex-column justify-content-between`}
     >
-      <Number>{7012734070394923}</Number>
-      <PriceDetail className={cardPriceDetailStyle}>
-        <h3 className="title text-center">
-          Cost in <strong>{23}</strong>
-        </h3>
-        <div className="values d-flex align-items-center justify-content-between">
-          <span>
-            Setup: <strong>{23}</strong>
-          </span>
-          <span>
-            Monthy: <strong>{23}</strong>
-          </span>
+      <CardHeader className="d-flex align-items-center justify-content-between">
+        <div className="user d-flex align-items-center">
+          <span>Author:</span>
+          <span className="ml-1">{user}</span>
         </div>
-      </PriceDetail>
-      <div
-        className={`${cardBtnsStyle} d-flex align-items-center justify-content-end`}
-      >
-        <Button type="button" onClick={() => {}}>
-          <PlusCircleIcon color={Colors.orange} size={24} />
-        </Button>
-      </div>
+        <div className="seq d-flex align-items-center justify-content-end">
+          <span>Seq:</span>
+          <strong className="ml-1">{seq}</strong>
+        </div>
+      </CardHeader>
+
+      <Message className="my-2 d-flex align-items-center">
+        <div className="w-100" lang="en">
+          {message}
+        </div>
+        {/* <Button type="button" onClick={() => {}}>
+          <ArrowIcon color={Colors.black} size={24} />
+        </Button> */}
+      </Message>
+
+      <CardFooter className="d-flex align-items-center justify-content-end">
+        <span>Created at:</span>
+        <span className="ml-1">{formatDate(date)}</span>
+      </CardFooter>
     </Card>
   );
 };

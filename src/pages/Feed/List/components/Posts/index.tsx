@@ -19,7 +19,7 @@ const Posts: React.FC<Props> = () => {
   const { posts, loading } = useSelector((state: RootState) => state.feed);
 
   useEffect(() => {
-    dispatch(getPosts(1, 5));
+    dispatch(getPosts(1, 10));
   }, []);
 
   return (
