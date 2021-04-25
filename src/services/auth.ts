@@ -1,8 +1,8 @@
 import api from 'config/api';
+import { LogInProps } from 'shared/types';
 
 export const authLogIn = (
-  username: string,
-  password: string
-) => {
-  return api.get(`auth`);
+  body: LogInProps
+): Promise<{ authToken: string }> => {
+  return api.post(`auth`, body);
 };

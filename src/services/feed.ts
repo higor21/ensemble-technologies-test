@@ -1,5 +1,5 @@
-import api from 'config/api';
-import { PostProps, FeedProps } from 'shared/types';
+import api from "config/api";
+import { PostProps, FeedProps } from "shared/types";
 
 export const getPosts = (
   startSeq: number,
@@ -9,4 +9,5 @@ export const getPosts = (
   return api.get(`feed?startSeq=${startSeq}&limit=${limit}&order=${order}`);
 };
 
-export const addPost = (body: PostProps) => api.post('feed', body);
+export const addPost = (body: PostProps): Promise<{ seq: number }> =>
+  api.post("feed", body);

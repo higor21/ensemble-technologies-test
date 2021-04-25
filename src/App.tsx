@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <>
-      {token ? (
+      {!token ? (
         <Switch>
           <Route path={RouteNames.login} component={LogInPage} />
           <Redirect from="/" to={RouteNames.login} />

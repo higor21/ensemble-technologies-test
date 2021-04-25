@@ -44,13 +44,9 @@ const Layout: React.FC<Props> = ({ children, hasHeader = true }) => {
       {hasHeader && (
         <Header className="px-3">
           <Logo to={RouteNames.listFeed}>
-            <img
-              className="px-2 h-100"
-              src={LogoImg}
-              alt="MSN evolution - logo"
-            />
+            <img className="px-2 h-100" src={LogoImg} alt="MSN Feed - logo" />
             <span className="ml-2">
-              <strong>MSN</strong> <em>evolution</em>
+              <strong>MSN</strong> <em>Feed</em>
             </span>
           </Logo>
         </Header>

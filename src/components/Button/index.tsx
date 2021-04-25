@@ -38,7 +38,11 @@ const Button: React.FC<Props> = ({
 
   Icon = isLoading ? (
     <Spinner
-      style={{ color, width: iconSize, height: iconSize }}
+      style={{
+        color: isOutline ? color : Colors.white,
+        width: iconSize,
+        height: iconSize,
+      }}
       animation="border"
     />
   ) : (

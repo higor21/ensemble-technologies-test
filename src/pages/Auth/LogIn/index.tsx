@@ -57,7 +57,6 @@ const LogIn: React.FC<FormikProps<FormValues>> = ({
               label="Username"
               placeholder="Enter your username."
               errorMsg={handleError("username")}
-              withoutIcon
             />
             <Input
               type="password"
@@ -68,7 +67,6 @@ const LogIn: React.FC<FormikProps<FormValues>> = ({
               label="Password"
               placeholder="Enter your password."
               errorMsg={handleError("password")}
-              withoutIcon
             />
           </Inputs>
           <div className="d-flex align-items-center justify-content-center">

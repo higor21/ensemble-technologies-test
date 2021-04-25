@@ -6,7 +6,7 @@ interface IState {
 }
 
 const initialState: IState = {
-  authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidGVzdDEiLCJpYXQiOjE2MTkzNjA5OTksImV4cCI6MTYxOTM2NDU5OX0.rKEAuKaaHTrg5k9ouQ4kZW7iL4vfrTjHlGoYqanVVJA",
+  authToken: null,
   loading: false,
 };
 
