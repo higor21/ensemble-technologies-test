@@ -14,3 +14,8 @@ export type PostResProps = {
   date: string;
   user: string;
 } & PostProps;
+
+export type LogInProps = {
+  username: string;
+  password: string;
+}

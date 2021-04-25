@@ -13,11 +13,15 @@ export const Header = styled.div`
   box-shadow: 0 9px 40px -10px ${Colors.blue};
 `;
 
-export const Body = styled.div`
+type BodyProps = {
+  noheader?: number;
+}
+
+export const Body = styled.div<BodyProps>`
   max-width: 600px;
   min-height: 100vh;
   position: fixed;
-  top: 60px;
+  ${props => props.noheader ? '' : 'top: 60px;'}
   left: 0;
   right: 0;
 `;

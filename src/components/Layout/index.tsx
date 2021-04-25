@@ -34,24 +34,31 @@ const Logo = styled(Link)`
   }
 `;
 
-interface Props {}
+interface Props {
+  hasHeader?: boolean;
+}
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC<Props> = ({ children, hasHeader = true }) => {
   return (
     <div>
-      <Header className="px-3">
-        <Logo to={RouteNames.listFeed}>
-          <img
-            className="px-2 h-100"
-            src={LogoImg}
-            alt="MSN evolution - logo"
-          />
-          <span className="ml-2">
-            <strong>MSN</strong> <em>evolution</em>
-          </span>
-        </Logo>
-      </Header>
-      <Body className="mx-auto justify-content-around px-4 py-4 d-flex flex-column">
+      {hasHeader && (
+        <Header className="px-3">
+          <Logo to={RouteNames.listFeed}>
+            <img
+              className="px-2 h-100"
+              src={LogoImg}
+              alt="MSN evolution - logo"
+            />
+            <span className="ml-2">
+              <strong>MSN</strong> <em>evolution</em>
+            </span>
+          </Logo>
+        </Header>
+      )}
+      <Body
+        noheader={hasHeader ? 0 : 1}
+        className="mx-auto justify-content-around px-4 py-4 d-flex flex-column"
+      >
         {children}
       </Body>
     </div>
