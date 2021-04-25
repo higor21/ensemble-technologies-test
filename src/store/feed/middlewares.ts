@@ -1,7 +1,8 @@
 import { AppDispatch } from "store/store";
 import { actions as feedActions } from "./slice";
-import {} from "services/feed";
+import { getPosts } from "services/feed";
 import { PostProps } from "shared/types";
+import { toast } from "react-toastify";
 
 const { setLoading, setPosts } = feedActions;
 
@@ -11,6 +12,10 @@ const getPostsThunk = (
   order: string = "asc"
 ) => async (dispatch: AppDispatch) => {
   try {
+    dispatch(setLoading(true));
+    const { posts } = await getPosts(startSeq, limit, order);
+    dispatch(setPosts(posts))
+    dispatch(setLoading(false));
   } catch (res) {}
 };
 

@@ -1,3 +1,10 @@
+export type FeedProps = {
+  count: number;
+  lastPostDate: string | null;
+  lastPostSeq: number;
+  posts: PostResProps[] | null;
+}
+
 export type PostProps = {
   message: string;
 };

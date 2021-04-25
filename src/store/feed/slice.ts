@@ -20,7 +20,7 @@ const feedSlice = createSlice({
   reducers: {
     setPosts: (state, { payload }): IState => ({
       ...state,
-      ...payload,
+      posts: payload,
     }),
     setLoading: (state, { payload }): IState => ({
       ...state,

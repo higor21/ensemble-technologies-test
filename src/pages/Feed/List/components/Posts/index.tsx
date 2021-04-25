@@ -1,9 +1,10 @@
 import { MessageCard } from "components";
 import React, { useEffect } from "react";
 import { Spinner } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "shared/colors";
 import { RootState } from "store";
+import { getPosts } from "store/feed/middlewares";
 import styled from "styled-components";
 
 interface Props {}
@@ -14,14 +15,12 @@ const PostsWrapper = styled.div`
 `;
 
 const Posts: React.FC<Props> = () => {
+  const dispatch = useDispatch();
   const { posts, loading } = useSelector((state: RootState) => state.feed);
 
-  /* useEffect(() => {
-    effect
-    return () => {
-      cleanup
-    }
-  }, [input]) */
+  useEffect(() => {
+    dispatch(getPosts(1, 5));
+  }, []);
 
   return (
     <PostsWrapper>
