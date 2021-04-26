@@ -12,6 +12,7 @@ export const FormWrapper = styled.form`
   bottom: 1.5rem;
   width: 90%;
   align-self: center;
+  box-shadow: 0 0 15px 0px ${Colors.blue};
 `;
 
 export const Button = styled.button<HTMLAttributes<HTMLButtonElement>>`
