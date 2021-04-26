@@ -1,10 +1,11 @@
-import { useWindowDimensions } from "hooks";
 import React, { HTMLAttributes } from "react";
 import { Colors } from "shared/colors";
 import { formatDate } from "shared/helpers";
-import { ArrowIcon } from "shared/icons";
 import { PostResProps } from "shared/types";
-import { Button, Card, Message, CardHeader, CardFooter } from "./styles";
+import { Card, Message, CardHeader, DateTime } from "./styles";
+import { useWindowDimensions } from "hooks";
+
+const BRACK_WIDTH = 500;
 
 interface Props extends PostResProps, HTMLAttributes<HTMLDivElement> {
   isFromLoggedUser?: boolean;
@@ -19,6 +20,11 @@ const MessageCard: React.FC<Props> = ({
   style,
   ...divProps
 }) => {
+  const { width } = useWindowDimensions();
+
+  if (!width) return null;
+  const isMobileDevice = width < BRACK_WIDTH;
+
   const msgFromOthersStyle = {
     transform: "translate(-1.5em, 0)",
     backgroundColor: "rgb(255 252 246)",
@@ -44,25 +50,17 @@ const MessageCard: React.FC<Props> = ({
           <span>Author:</span>
           <span className="ml-1">{user}</span>
         </div>
-        <div className="seq d-flex align-items-center justify-content-end">
-          <span>Seq:</span>
-          <strong className="ml-1">{seq}</strong>
-        </div>
+        <DateTime className="d-flex align-items-center justify-content-end">
+          {!isMobileDevice && <span>Created at:</span>}
+          <span className="ml-1">{formatDate(date)}</span>
+        </DateTime>
       </CardHeader>
 
       <Message className="my-2 d-flex align-items-center">
         <div className="w-100" lang="en">
           {message}
         </div>
-        {/* <Button type="button" onClick={() => {}}>
-          <ArrowIcon color={Colors.black} size={24} />
-        </Button> */}
       </Message>
-
-      <CardFooter className="d-flex align-items-center justify-content-end">
-        <span>Created at:</span>
-        <span className="ml-1">{formatDate(date)}</span>
-      </CardFooter>
     </Card>
   );
 };

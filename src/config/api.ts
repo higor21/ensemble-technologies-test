@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import store from 'store';
+import { clear } from 'store/auth/slice';
 
 const baseURL = 'https://job.ensemble.com.br/api/';
 
@@ -25,11 +26,13 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   ({ data }: AxiosResponse) => data,
   (error: AxiosError) => {
-    console.log(error)
-    /* if (error.)
-    if (error.response.status / 500 === 1) {
-      toast.error('Server temporarily in error.\nPlease try again later.\t:(')
-    } */
+    const { message, code } = error.response?.data?.error || {};
+    toast.error(`Error ${code}: ${message}`)
+
+    if(code === 'NOT_AUTHORIZED'){
+      store.dispatch(clear())
+    }
+
     return Promise.reject(error);
   }
 );

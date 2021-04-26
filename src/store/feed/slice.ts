@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PostResProps } from 'shared/types';
 
-export const DEFAULT_PAGE_NUMBER = 1;
-export const DEFAULT_PAGE_SIZE = 7;
+export const DEFAULT_LIMIT = 100;
 
 interface IState {
-  redirectToList: boolean;
+  count: number;
   posts: PostResProps[] | null;
-  loading: boolean;
+  loading: boolean;    
+  sendBtnLoading: boolean;    
 }
 
 const initialState: IState = {
-  redirectToList: false,
+  count: 0,
   posts: null,
   loading: false,
+  sendBtnLoading: false,
 };
 
 const feedSlice = createSlice({
@@ -22,15 +23,15 @@ const feedSlice = createSlice({
   reducers: {
     setPosts: (state, { payload }): IState => ({
       ...state,
-      posts: payload,
+      ...payload,
     }),
     setLoading: (state, { payload }): IState => ({
       ...state,
       loading: payload,
     }),
-    setRedirectToList: (state, { payload }): IState => ({
+    setSendBtnLoading: (state, { payload }): IState => ({
       ...state,
-      redirectToList: payload,
+      sendBtnLoading: payload,
     }),
     clear: (): IState => initialState,
   },
@@ -39,7 +40,7 @@ const feedSlice = createSlice({
 export const { actions, reducer } = feedSlice;
 export const {
   setLoading,
-  setRedirectToList,
+  setSendBtnLoading,
   setPosts,
   clear,
 } = actions;

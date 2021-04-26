@@ -2,12 +2,12 @@ import React from "react";
 import { Header, Body, LogOutBtn, Logo } from "./styles";
 
 import LogoImg from "assets/images/logo.png";
-import styled from "styled-components";
 import { Colors } from "shared/colors";
 import { RouteNames } from "shared/constants";
 import { LogInIcon } from "shared/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clear } from "store/auth/slice";
+import { RootState } from "store";
 
 interface Props {
   hasHeader?: boolean;
@@ -15,6 +15,7 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children, hasHeader = true }) => {
   const dispatch = useDispatch();
+  const { username } = useSelector((state: RootState) => state.auth);
 
   const handleLogOut = () => dispatch(clear());
 
@@ -24,8 +25,11 @@ const Layout: React.FC<Props> = ({ children, hasHeader = true }) => {
         <Header className="px-3 d-flex align-items-center justify-content-between">
           <Logo to={RouteNames.listFeed}>
             <img className="px-2 h-100" src={LogoImg} alt="MSN Feed - logo" />
-            <span className="ml-2">
-              <strong>MSN</strong> <em>Feed</em>
+            <span className="ml-2 d-flex flex-column justify-content-center align-items-start">
+              <div>
+                <strong>MSN</strong> <em>Feed</em>
+              </div>
+              <small className="user-info">Logged as {username}</small>
             </span>
           </Logo>
           <LogOutBtn

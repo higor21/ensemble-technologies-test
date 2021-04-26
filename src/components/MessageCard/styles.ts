@@ -31,7 +31,7 @@ export const CardHeader = styled.div`
   }
 `;
 
-export const CardFooter = styled.div`
+export const DateTime = styled.div`
   & > span:first-of-type {
     color: ${Colors.black};
     font-size: 1.2em;

@@ -1,4 +1,4 @@
-import { AddFeedPage, ListFeedPage, LogInPage } from "pages";
+import { ListFeedPage, LogInPage } from "pages";
 import React from "react";
 import { Provider, useSelector } from "react-redux";
 import {
@@ -43,7 +43,6 @@ const App = () => {
         </Switch>
       ) : (
         <Switch>
-          <Route exact path={RouteNames.addFeed} component={AddFeedPage} />
           <Route exact path={RouteNames.listFeed} component={ListFeedPage} />
           <Redirect to={RouteNames.listFeed} />
         </Switch>

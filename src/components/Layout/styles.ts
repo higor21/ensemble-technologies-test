@@ -39,6 +39,12 @@ export const Logo = styled(Link)`
     background-color: ${Colors.white};
   }
 
+  & .user-info {
+    font-size: 0.6em;
+    font-weight: 500;
+    color: ${Colors.black};
+  }
+
   & span {
     transition-duration: 0.4s;
   }

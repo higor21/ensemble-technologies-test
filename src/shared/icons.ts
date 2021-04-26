@@ -5,6 +5,8 @@ import {
   FiCheck,
   FiSend,
   FiLogIn,
+  FiArrowLeft,
+  FiArrowRight,
   FiChevronDown,
 } from 'react-icons/fi';
 
@@ -16,4 +18,6 @@ export {
   FiCheck as CheckIcon,
   FiLogIn as LogInIcon,
   FiChevronDown as ArrowIcon,
+  FiArrowLeft as ArrowLeftIcon,
+  FiArrowRight as ArrowRightIcon,
 };
