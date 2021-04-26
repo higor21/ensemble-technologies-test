@@ -6,26 +6,37 @@ import { ArrowIcon } from "shared/icons";
 import { PostResProps } from "shared/types";
 import { Button, Card, Message, CardHeader, CardFooter } from "./styles";
 
-const BRACK_WIDTH = 540;
-
-interface Props extends PostResProps, HTMLAttributes<HTMLDivElement> {}
+interface Props extends PostResProps, HTMLAttributes<HTMLDivElement> {
+  isFromLoggedUser?: boolean;
+}
 
 const MessageCard: React.FC<Props> = ({
   message,
   seq,
   user,
   date,
+  isFromLoggedUser,
+  style,
   ...divProps
 }) => {
-  const { width } = useWindowDimensions();
-
-  if (!width) return null;
-
-  const isMobileDevice = width < BRACK_WIDTH;
+  const msgFromOthersStyle = {
+    transform: "translate(-1.5em, 0)",
+    backgroundColor: "rgb(255 252 246)",
+    borderTopLeftRadius: 0,
+  };
+  const myMsgStyle = {
+    transform: "translate(1.5em, 0)",
+    backgroundColor: Colors.white,
+    borderTopRightRadius: 0,
+  };
 
   return (
     <Card
       {...divProps}
+      style={{
+        ...style,
+        ...(isFromLoggedUser ? myMsgStyle : msgFromOthersStyle),
+      }}
       className={`py-2 px-3 w-100 d-flex flex-column justify-content-between`}
     >
       <CardHeader className="d-flex align-items-center justify-content-between">
